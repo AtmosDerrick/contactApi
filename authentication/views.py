@@ -27,9 +27,11 @@ class LoginView(generics.ListAPIView):
 
         if not user:
             return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        #Send Res
 
         auth_token = jwt.encode(
-            {'username': user.username, 'exp': datetime.utcnow() + timedelta(hours=24)},
+            {'username': user.username, },
             settings.JWT_SECRET_KEY
         )
 
